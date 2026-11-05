@@ -1,5 +1,6 @@
 "use client";
-import {useEffect,useMemo,useRef,useState} from 'react';
+import {useContext,useEffect,useMemo,useRef,useState} from 'react';
+import {MapReadyContext} from './map-view-switch';
 import type {School} from './explorer';
 import dynamic from 'next/dynamic';
 import {readApiJson} from '@/lib/client-response';
@@ -46,6 +47,8 @@ export default function StreetMap({province,query,sector,selectedCue,onOpenCard}
   load().catch(e=>{if(!controller.signal.aborted)setError(e.message)});return()=>controller.abort();
  },[province,retry]);
  const visible=useMemo(()=>items.filter(x=>(!sector||sector===x.sector_code)&&(!query||normalizeName(x.name).includes(normalizeName(query)))),[items,query,sector]);
+ const signalReady=useContext(MapReadyContext);
+ useEffect(()=>{if(error||(ready&&!visible.length))signalReady()},[error,ready,visible.length,signalReady]);
  const points=useMemo(()=>visible.map(x=>({id:x.cueanexo,cueanexo:x.cueanexo,name:x.name,latitude:x.latitude,longitude:x.longitude})),[visible]);
  const selected=visible.find(x=>x.cueanexo===chosen);
  if(error)return <div role="alert">{error}<p><button type="button" onClick={()=>setRetry(n=>n+1)}>Reintentar</button></p></div>;

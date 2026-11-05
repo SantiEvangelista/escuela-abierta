@@ -47,7 +47,7 @@
 
 /* Depth transition: zoom into streets and pull back to the provincial outline. */
 .map-view-switch{display:flex;flex-direction:column;min-height:0;flex:1;gap:10px}.map-view-toolbar{display:flex;justify-content:flex-end;flex-shrink:0}.map-view-toolbar button{font-size:14px}
-.map-stage{position:relative;isolation:isolate;flex:1;min-height:300px;overflow:hidden}.map-layer{position:absolute;inset:0;transform-origin:50% 50%;transition:transform 620ms cubic-bezier(.22,1,.36,1),opacity 400ms ease,filter 500ms ease,visibility 620ms;overflow:hidden}.province-layer{opacity:1;visibility:visible;transform:scale(1);filter:blur(0)}.province-layer>svg{display:block;width:100%;height:100%}.street-layer{opacity:0;visibility:hidden;transform:scale(.92);filter:blur(5px);pointer-events:none;overflow:auto;background:var(--canvas)}.street-active>.province-layer{opacity:0;visibility:hidden;transform:scale(1.18);filter:blur(7px);pointer-events:none}.street-active>.street-layer{opacity:1;visibility:visible;transform:scale(1);filter:blur(0);pointer-events:auto}.map-panel .province-layer>svg{min-height:0}
+.map-stage{position:relative;isolation:isolate;flex:1;min-height:300px;overflow:hidden}.map-layer{position:absolute;inset:0;transform-origin:50% 50%;transition:transform 240ms ease-out,opacity 240ms ease-out,visibility 240ms;overflow:hidden}.province-layer{opacity:1;visibility:visible;transform:scale(1);filter:blur(0)}.province-layer>svg{display:block;width:100%;height:100%}.street-layer{opacity:0;visibility:hidden;transform:scale(.985);pointer-events:none;overflow:auto;background:var(--canvas)}.street-active>.province-layer{opacity:0;visibility:hidden;transform:scale(1.015);pointer-events:none}.street-active>.street-layer{opacity:1;visibility:visible;transform:scale(1);filter:blur(0);pointer-events:auto}.map-panel .province-layer>svg{min-height:0}
 .street-content{display:flex;flex-direction:column;height:100%;gap:8px}.street-content>.map-note{margin:0}.street-content .institution-map-wrap{flex:1;min-height:240px;display:flex;flex-direction:column}.street-content .institution-map{flex:1;height:auto;min-height:240px}.street-content .map-actions{margin:0 0 8px;gap:6px}.street-content .map-actions span{font-size:12px}.map-selection{padding:10px;background:var(--card);font-size:14px}.map-selection p{margin:4px 0}.location-explorer .map-stage{height:68vh;min-height:480px;flex:none}.location-explorer .map-stage .institution-map{height:calc(68vh - 80px);min-height:360px}.map-layer[aria-hidden=true]{pointer-events:none}
 @media(max-width:760px){.map-panel .map-stage{min-height:240px}.location-explorer .map-stage{height:60vh;min-height:420px}.location-explorer .map-stage .institution-map{height:calc(60vh - 100px);min-height:300px}}
 @media(prefers-reduced-motion:reduce){.map-layer{transition:none;transform:none!important;filter:none!important}}
@@ -111,3 +111,12 @@
   .results-heading .top-links{display:none}
   .mobile-api-link{display:inline-flex;align-items:center;min-height:44px}
 }
+
+.province-layer path[data-province][aria-pressed=true]{stroke:var(--ink)}
+@media(prefers-reduced-motion:no-preference){
+  .province-layer path[data-province]{transition:fill 140ms ease-out,stroke 140ms ease-out,opacity 140ms ease-out}
+  .selection-ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--primary);pointer-events:none;animation:school-ring 350ms ease-out both}
+  .confirmed-count{display:inline-block;animation:attendance-count 160ms ease-out}
+}
+@keyframes school-ring{from{transform:scale(.7);opacity:1}to{transform:scale(1.65);opacity:0}}
+@keyframes attendance-count{50%{transform:scale(1.08)}}

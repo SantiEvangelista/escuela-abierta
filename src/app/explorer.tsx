@@ -58,13 +58,15 @@ export default function Home({initial,initialQuery}:{initial:Initial;initialQuer
      const newTop = card.getBoundingClientRect().top;
      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
      const offset = oldTop - newTop;
-     if (!reduceMotion && offset) {
+     const title=card.querySelector('h3')?.getBoundingClientRect();
+     const needsScroll=title ? title.top<12 || title.bottom>innerHeight : newTop<12 || newTop>innerHeight;
+     if (!needsScroll && !reduceMotion && offset) {
        card.animate([{transform:'translateY('+offset+'px)'},{transform:'translateY(0)'}],
-         {duration:360,easing:'cubic-bezier(.2,.75,.25,1)'});
+         {duration:220,easing:'cubic-bezier(.2,.75,.25,1)'});
      }
      card.querySelector<HTMLButtonElement>('.flip-back button')?.focus({preventScroll:true});
-     if (newTop < 12 || newTop > innerHeight * .65)
-       card.parentElement?.scrollIntoView({block:'start',behavior:reduceMotion?'instant':'smooth'});
+     if (needsScroll)
+       card.scrollIntoView({block:'start',behavior:reduceMotion?'instant':'smooth'});
    });
  }
  function openMapCard(school: School) {
