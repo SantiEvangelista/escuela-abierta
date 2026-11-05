@@ -4,9 +4,9 @@
 node_modules/
 dist/
 backups/
-data/
+/data/
 padron/
-docs/
+/docs/
 scripts/
 db/
 Dockerfile
