@@ -100,3 +100,14 @@
 
 .explorer-accessible-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media(max-width:760px){.results-heading{justify-content:flex-start;margin-bottom:32px}}
+
+.mobile-api-link{display:none}
+@media(max-width:760px){
+  .workspace>.mobile-brand{padding:20px 16px 0;margin:0}
+  .mobile-map{min-height:44px;margin:0}
+  .map-panel.mobile-open{position:relative;inset:auto;height:clamp(300px,50svh,460px);min-height:0;padding:8px 16px;z-index:auto;overflow:visible}
+  .map-panel .map-stage{min-height:0}
+  .results-heading{margin:0}
+  .results-heading .top-links{display:none}
+  .mobile-api-link{display:inline-flex;align-items:center;min-height:44px}
+}
