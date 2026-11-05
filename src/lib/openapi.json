@@ -1,0 +1,2211 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Escuela Abierta · API",
+    "version": "1.1.0",
+    "description": "Buscá escuelas de Argentina, consultá qué niveles ofrecen y ubicá sus sedes en el mapa. Para empezar, probá [buscar «Lorenzo» en Tucumán](/api/v1/institutions?province=90&q=lorenzo). Las consultas son públicas. Desde esta página podés cambiar los filtros y ver la respuesta real de la API."
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "paths": {
+    "/schools": {
+      "get": {
+        "summary": "Buscar sedes en el padrón",
+        "parameters": [
+          {
+            "name": "cue",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{7}$"
+            },
+            "description": "Los siete dígitos de la Clave Única de Establecimiento."
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{2}$"
+            },
+            "example": "90",
+            "description": "Código de provincia de dos dígitos. Para Tucumán, usá 90."
+          },
+          {
+            "name": "department",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{5}$"
+            },
+            "description": "Código de cinco dígitos del departamento."
+          },
+          {
+            "name": "locality",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{8}$"
+            },
+            "description": "Código de ocho dígitos de la localidad."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000,
+              "default": 1
+            },
+            "description": "Página que querés leer, empezando por 1."
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Cantidad de resultados por página, hasta 100."
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 100
+            },
+            "example": "lorenzo",
+            "description": "Parte del nombre de la escuela, entre 2 y 100 caracteres."
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cueanexo",
+                "name",
+                "-name"
+              ]
+            },
+            "description": "Usá name para ordenar de A a Z, -name para invertir el orden o cueanexo para ordenar por código."
+          },
+          {
+            "name": "sector",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "state",
+                "private",
+                "social_cooperative"
+              ]
+            },
+            "description": "Código de gestión del catálogo /sectors."
+          },
+          {
+            "name": "area",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código de ámbito del catálogo /areas."
+          },
+          {
+            "name": "offer",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código de oferta educativa del catálogo /offers."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Instituciones"
+        ],
+        "operationId": "get__schools",
+        "description": "Usá esta consulta si necesitás los registros originales. Cada sede o anexo tiene su propio código. Podés filtrar por nombre, provincia, gestión u oferta educativa."
+      }
+    },
+    "/schools/{cueanexo}": {
+      "get": {
+        "summary": "Ver una sede por su código",
+        "parameters": [
+          {
+            "name": "cueanexo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{9}$"
+            },
+            "example": "900058300",
+            "description": "Código completo de nueve dígitos: CUE y anexo."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {},
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Instituciones"
+        ],
+        "operationId": "get__schools_cueanexo",
+        "description": "Si ya tenés el CUE y el número de anexo, ingresá los nueve dígitos juntos para consultar el domicilio y las ofertas de esa sede. Conservá los ceros iniciales."
+      }
+    },
+    "/provinces": {
+      "get": {
+        "summary": "Ver las provincias y sus códigos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Catálogos y fuentes"
+        ],
+        "operationId": "get__provinces",
+        "description": "Elegí una provincia de esta lista para filtrar otras consultas. Por ejemplo, el código de Tucumán es 90."
+      }
+    },
+    "/departments": {
+      "get": {
+        "summary": "Buscar departamentos",
+        "parameters": [
+          {
+            "name": "province",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{2}$"
+            },
+            "example": "90",
+            "description": "Código de provincia de dos dígitos. Para Tucumán, usá 90."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000,
+              "default": 1
+            },
+            "description": "Página que querés leer, empezando por 1."
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Cantidad de resultados por página, hasta 100."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Catálogos y fuentes"
+        ],
+        "operationId": "get__departments",
+        "description": "Elegí una provincia para ver sus departamentos. Podés usar el código de un departamento para buscar sus localidades."
+      }
+    },
+    "/localities": {
+      "get": {
+        "summary": "Buscar localidades",
+        "parameters": [
+          {
+            "name": "province",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{2}$"
+            },
+            "example": "90",
+            "description": "Código de provincia de dos dígitos. Para Tucumán, usá 90."
+          },
+          {
+            "name": "department",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{5}$"
+            },
+            "description": "Código de cinco dígitos del departamento."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000,
+              "default": 1
+            },
+            "description": "Página que querés leer, empezando por 1."
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Cantidad de resultados por página, hasta 100."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Catálogos y fuentes"
+        ],
+        "operationId": "get__localities",
+        "description": "Encontrá una localidad por provincia o departamento. Su código te sirve para consultar las escuelas de ese lugar."
+      }
+    },
+    "/sectors": {
+      "get": {
+        "summary": "Ver los tipos de gestión",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Catálogos y fuentes"
+        ],
+        "operationId": "get__sectors",
+        "description": "Consultá los códigos de gestión que acepta el filtro sector, por ejemplo para buscar escuelas públicas o privadas."
+      }
+    },
+    "/areas": {
+      "get": {
+        "summary": "Ver los ámbitos educativos",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Catálogos y fuentes"
+        ],
+        "operationId": "get__areas",
+        "description": "Consultá los códigos para distinguir escuelas de ámbito rural o urbano y usalos en el filtro area."
+      }
+    },
+    "/offers": {
+      "get": {
+        "summary": "Ver niveles y ofertas educativas",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Catálogos y fuentes"
+        ],
+        "operationId": "get__offers",
+        "description": "Encontrá el código de una oferta, como primario o secundario, y usalo en el filtro offer para buscar escuelas que la tengan."
+      }
+    },
+    "/datasets": {
+      "get": {
+        "summary": "Ver la edición del padrón",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Catálogos y fuentes"
+        ],
+        "operationId": "get__datasets",
+        "description": "Consultá la fecha del padrón que usa el sitio, cuándo se incorporó y cuántos registros contiene."
+      }
+    },
+    "/sources": {
+      "get": {
+        "summary": "Encontrar la fuente oficial",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Catálogos y fuentes"
+        ],
+        "operationId": "get__sources",
+        "description": "Desde acá podés acceder a la fuente del padrón para revisar o citar los datos."
+      }
+    },
+    "/institutions": {
+      "get": {
+        "summary": "Buscar fichas de instituciones",
+        "parameters": [
+          {
+            "name": "cue",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{7}$"
+            },
+            "description": "Los siete dígitos de la Clave Única de Establecimiento."
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{2}$"
+            },
+            "example": "90",
+            "description": "Código de provincia de dos dígitos. Para Tucumán, usá 90."
+          },
+          {
+            "name": "department",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{5}$"
+            },
+            "description": "Código de cinco dígitos del departamento."
+          },
+          {
+            "name": "locality",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{8}$"
+            },
+            "description": "Código de ocho dígitos de la localidad."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10000,
+              "default": 1
+            },
+            "description": "Página que querés leer, empezando por 1."
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 25
+            },
+            "description": "Cantidad de resultados por página, hasta 100."
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 100
+            },
+            "example": "lorenzo",
+            "description": "Parte del nombre de la escuela, entre 2 y 100 caracteres."
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "cueanexo",
+                "name",
+                "-name"
+              ]
+            },
+            "description": "Usá name para ordenar de A a Z, -name para invertir el orden o cueanexo para ordenar por código."
+          },
+          {
+            "name": "sector",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "state",
+                "private",
+                "social_cooperative"
+              ]
+            },
+            "description": "Código de gestión del catálogo /sectors."
+          },
+          {
+            "name": "area",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código de ámbito del catálogo /areas."
+          },
+          {
+            "name": "offer",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Código de oferta educativa del catálogo /offers."
+          },
+          {
+            "name": "cueanexo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{9}$"
+            },
+            "description": "Código completo de nueve dígitos: CUE y anexo."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consulta correcta",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "data",
+                    "meta"
+                  ],
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Institution"
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "location_coverage": {
+                          "type": "object",
+                          "properties": {
+                            "located": {
+                              "type": "integer"
+                            },
+                            "total": {
+                              "type": "integer"
+                            },
+                            "label": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetros inválidos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Recurso inexistente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Sin publicación o servicio no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error"
+                  ],
+                  "properties": {
+                    "error": {
+                      "type": "object",
+                      "required": [
+                        "code",
+                        "message"
+                      ],
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "message": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Para armar un listado como el del explorador, empezá acá. Reunimos en una ficha los registros que comparten localidad, domicilio y nombre normalizados. En members figuran los códigos de origen. La búsqueda por nombre admite abreviaturas y omite los acentos. Si hay coordenadas incorporadas, locations muestra las sedes y sus fuentes. Si location vale null, la ficha todavía no tiene un punto en el mapa.",
+        "tags": [
+          "Instituciones"
+        ],
+        "operationId": "get__institutions"
+      }
+    },
+    "/attendance/{id}": {
+      "get": {
+        "tags": [
+          "Participación"
+        ],
+        "summary": "Consultar cuántas personas marcaron «Asistí acá»",
+        "operationId": "getAttendance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{9}$"
+            },
+            "example": "900058300",
+            "description": "Usá el campo cueanexo de la ficha que devuelve /institutions."
+          }
+        ],
+        "description": "Consultá el total y si ya marcaste tu asistencia desde este navegador. Hacé esta consulta primero: guarda la cookie que permite recordar tu elección.",
+        "responses": {
+          "200": {
+            "description": "Cantidad pública y estado del visitante actual",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "count",
+                    "attended"
+                  ],
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "attended": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "example": {
+                  "count": 0,
+                  "attended": false
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Institución no encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Servicio temporalmente no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Participación"
+        ],
+        "summary": "Marcar o quitar «Asistí acá»",
+        "operationId": "setAttendance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{9}$"
+            },
+            "example": "900058300",
+            "description": "Usá el campo cueanexo de la ficha que devuelve /institutions."
+          }
+        ],
+        "description": "Después de consultar el contador desde este mismo sitio, enviá attended en true para sumar tu marca o en false para quitarla. Repetir la misma elección conserva el total. La prueba modifica el contador real: al terminar, podés deshacerla con false. La participación es anónima. Se admiten 20 solicitudes por minuto por visitante y 300 en total.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "attended"
+                ],
+                "properties": {
+                  "attended": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "example": {
+                "attended": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cantidad pública y estado del visitante actual",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "count",
+                    "attended"
+                  ],
+                  "properties": {
+                    "count": {
+                      "type": "integer",
+                      "minimum": 0
+                    },
+                    "attended": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "example": {
+                  "count": 0,
+                  "attended": false
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "JSON inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Cookie ausente o inválida: ejecutar GET primero",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Origen no permitido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Institución no encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Solicitud demasiado grande",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Content-Type debe ser application/json",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Límite de intentos; esperar Retry-After",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Servicio temporalmente no disponible",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Estado"
+        ],
+        "summary": "Comprobar si la API está disponible",
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "description": "Disponible",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "ok",
+                  "database": "available"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "No disponible"
+          }
+        },
+        "description": "Usá esta consulta para saber si el servicio responde y puede conectarse a la base de datos."
+      }
+    },
+    "/map-points": {
+      "get": {
+        "summary": "Ver sedes con coordenadas",
+        "parameters": [
+          {
+            "name": "province",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{2}$"
+            },
+            "example": "90",
+            "description": "Código de provincia de dos dígitos. Para Tucumán, usá 90."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de sedes con coordenadas y fuente cartográfica"
+          },
+          "400": {
+            "description": "Provincia ausente o inválida"
+          }
+        },
+        "tags": [
+          "Instituciones"
+        ],
+        "description": "Elegí una provincia para obtener los puntos que podés mostrar en un mapa. Cada punto identifica la sede por su CUE y anexo e incluye la fuente de la ubicación."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "InstitutionLocation": {
+        "type": "object",
+        "required": [
+          "label",
+          "latitude",
+          "longitude",
+          "precision",
+          "precision_original",
+          "source_cueanexo",
+          "source"
+        ],
+        "properties": {
+          "label": {
+            "type": "string",
+            "const": "Ubicación según Mapa Educativo"
+          },
+          "latitude": {
+            "type": "number",
+            "minimum": -90,
+            "maximum": 90
+          },
+          "longitude": {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          "precision": {
+            "type": "string",
+            "enum": [
+              "building",
+              "approximate_address"
+            ],
+            "description": "Clase derivada de la precisión original; no certifica una entrada física."
+          },
+          "precision_original": {
+            "type": "string",
+            "enum": [
+              "PRECISA",
+              "APROXIMADA"
+            ],
+            "description": "Atributo PRE original de la fuente."
+          },
+          "precision_note": {
+            "type": "string"
+          },
+          "source_cueanexo": {
+            "type": "string",
+            "pattern": "^[0-9]{9}$"
+          },
+          "source": {
+            "type": "object",
+            "required": [
+              "name",
+              "url",
+              "attribution",
+              "license",
+              "cartographic_cut_date",
+              "metadata_reference_date",
+              "checked_at"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "attribution": {
+                "type": "string"
+              },
+              "license": {
+                "type": "string"
+              },
+              "cartographic_cut_date": {
+                "type": "string",
+                "format": "date"
+              },
+              "metadata_reference_date": {
+                "type": "string",
+                "format": "date",
+                "description": "Fecha de referencia de metadata, no fecha de consulta."
+              },
+              "checked_at": {
+                "type": "string",
+                "format": "date",
+                "description": "Fecha de consulta local, separada de las fechas de fuente."
+              }
+            }
+          }
+        }
+      },
+      "Institution": {
+        "type": "object",
+        "properties": {
+          "institution_id": {
+            "type": "string"
+          },
+          "cueanexo": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "location": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/InstitutionLocation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

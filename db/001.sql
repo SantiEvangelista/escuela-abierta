@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS datasets(id serial PRIMARY KEY, sha256 text UNIQUE NOT NULL, source_url text NOT NULL, source_date date NOT NULL, imported_at timestamptz NOT NULL DEFAULT now(), records integer NOT NULL);
+CREATE TABLE IF NOT EXISTS publication(singleton boolean PRIMARY KEY DEFAULT true CHECK(singleton), dataset_id integer NOT NULL REFERENCES datasets);
+CREATE TABLE IF NOT EXISTS sectors(code text PRIMARY KEY, name text UNIQUE NOT NULL);
+CREATE TABLE IF NOT EXISTS areas(code text PRIMARY KEY, name text UNIQUE NOT NULL);
+CREATE TABLE IF NOT EXISTS offers(code text PRIMARY KEY, modality text NOT NULL, name text NOT NULL);
+CREATE TABLE IF NOT EXISTS provinces(dataset_id integer REFERENCES datasets, code text, name text NOT NULL, PRIMARY KEY(dataset_id,code));
+CREATE TABLE IF NOT EXISTS departments(dataset_id integer, code text CHECK(code ~ '^[0-9]{5}$'), province_code text NOT NULL, name text NOT NULL, PRIMARY KEY(dataset_id,code), FOREIGN KEY(dataset_id,province_code) REFERENCES provinces);
+CREATE TABLE IF NOT EXISTS localities(dataset_id integer, code text CHECK(code ~ '^[0-9]{8}$'), department_code text NOT NULL, name text NOT NULL, PRIMARY KEY(dataset_id,code), FOREIGN KEY(dataset_id,department_code) REFERENCES departments);
+CREATE TABLE IF NOT EXISTS schools(dataset_id integer REFERENCES datasets, cueanexo text CHECK(cueanexo ~ '^[0-9]{9}$'), cue text GENERATED ALWAYS AS (left(cueanexo,7)) STORED, annex text GENERATED ALWAYS AS (right(cueanexo,2)) STORED, name text NOT NULL, locality_code text NOT NULL, sector_code text REFERENCES sectors, area_code text REFERENCES areas, address text, postal_code text, phone text, email text, source_row integer NOT NULL, raw jsonb NOT NULL, PRIMARY KEY(dataset_id,cueanexo), FOREIGN KEY(dataset_id,locality_code) REFERENCES localities);
+CREATE TABLE IF NOT EXISTS school_offers(dataset_id integer, cueanexo text, offer_code text REFERENCES offers, PRIMARY KEY(dataset_id,cueanexo,offer_code), FOREIGN KEY(dataset_id,cueanexo) REFERENCES schools);
+CREATE INDEX IF NOT EXISTS schools_locality ON schools(dataset_id,locality_code);
+CREATE INDEX IF NOT EXISTS schools_cue ON schools(dataset_id,cue);
+CREATE INDEX IF NOT EXISTS school_offers_filter ON school_offers(dataset_id,offer_code,cueanexo);

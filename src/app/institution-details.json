@@ -1,0 +1,42 @@
+{
+  "900067800": {
+    "checked": "04/11/2026",
+    "schedule": {
+      "source": "https://www.colegiopabloapostol.edu.ar/doc/Preinscripcion2025.pdf",
+      "note": "Documento de preinscripción 2025. Vigencia para 2026 pendiente de confirmación.",
+      "items": [
+        "Inicial: lunes a viernes, 14:00–18:30.",
+        "Primario: lunes a jueves, 14:00–18:30; viernes, 8:55–12:25 y 14:00–18:30.",
+        "Secundario: lunes a viernes, 7:45–13:30; educación física dos tardes por semana."
+      ]
+    },
+    "authorities": {
+      "source": "https://www.colegiopabloapostol.edu.ar/autoridades.html",
+      "note": "Página institucional sin fecha de actualización. Cargos publicados, vigencia pendiente de confirmación.",
+      "items": [
+        "Director general: Alberto Pablo Claps.",
+        "Directora: Eugenia Aragón (nivel no especificado).",
+        "Directora de nivel inicial: Luz María Claps."
+      ]
+    }
+  },
+  "900036800": {
+    "checked": "04/11/2026",
+    "schedule": {
+      "source": "https://9dejulio-tuc.infd.edu.ar/sitio/datos-institucionales/",
+      "note": "Solo nivel superior. Horario de atención; no indica turno de cursado ni carga horaria.",
+      "items": [
+        "Atención: 18:00–23:00."
+      ]
+    },
+    "authorities": {
+      "source": "https://9dejulio-tuc.infd.edu.ar/sitio/autoridades/",
+      "note": "Solo nivel superior. Página sin fecha de actualización; vigencia pendiente de confirmación.",
+      "items": [
+        "Rectora: Elizabeth Jaimes.",
+        "Vicerrector: Augusto Andrada Trejo.",
+        "Secretaria: Sandra Boscarino."
+      ]
+    }
+  }
+}

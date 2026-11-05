@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "name": "Escuela N° 259 Belgrano",
+    "latitude": -26.836035,
+    "longitude": -65.2254339,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.836035,-65.2254339&query_place_id=ChIJb-305G9cIpQRg_t19Fsl7qM",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 2,
+    "name": "Escuela San Miguel",
+    "latitude": -26.8185603,
+    "longitude": -65.2094271,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8185603,-65.2094271&query_place_id=ChIJQ3f-mT5cIpQRehNk4pdQiMI",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 3,
+    "name": "Escuela Técnica N°2 Obispo Colombres",
+    "latitude": -26.8369979,
+    "longitude": -65.1975703,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8369979,-65.1975703&query_place_id=ChIJw9M1pAZcIpQRn2k5l8DT5j0",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 4,
+    "name": "Escuela Secundaria Gral. Manuel Belgrano",
+    "latitude": -26.8354302,
+    "longitude": -65.2252457,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8354302,-65.2252457&query_place_id=ChIJq-yo7m9cIpQR2rE9_7lz_b4",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 5,
+    "name": "Escuela Nicolás Avellaneda",
+    "latitude": -26.8410227,
+    "longitude": -65.2156609,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8410227,-65.2156609&query_place_id=ChIJ18cmvHRcIpQRM2RTqGOdBxk",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 6,
+    "name": "Escuela de la Patria Dr. Manuel Belgrano",
+    "latitude": -26.8382594,
+    "longitude": -65.2141801,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8382594,-65.2141801&query_place_id=ChIJdTIxNXNcIpQRHkbdipsxRwg",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 7,
+    "name": "Escuela Secundaria De La Ciudadela",
+    "latitude": -26.836035,
+    "longitude": -65.2254339,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.836035,-65.2254339&query_place_id=ChIJb-305G9cIpQRvC8zpB9Dwwc",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 8,
+    "name": "Escuela Secundaria Campo de las Carreras",
+    "latitude": -26.8405783,
+    "longitude": -65.2221926,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8405783,-65.2221926&query_place_id=ChIJcVwCR3FcIpQRtt0z7MIJpZQ",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 9,
+    "name": "Escuela 9 de Julio",
+    "latitude": -26.827987,
+    "longitude": -65.2121787,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.827987,-65.2121787&query_place_id=ChIJzVethRRcIpQRnlo4-28sp5Y",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 10,
+    "name": "Escuela de Comercio N°2 Prof. Emilio Barbieri",
+    "latitude": -26.8356345,
+    "longitude": -65.2155904,
+    "group": "Escuelas",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8356345,-65.2155904&query_place_id=ChIJs1Cru3JcIpQRhN71ZOD0tIU",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 11,
+    "name": "Colegio Nuestra Señora del Valle",
+    "latitude": -26.8344143,
+    "longitude": -65.2158066,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8344143,-65.2158066&query_place_id=ChIJAQnvWG1cIpQR_Z_zCgekZwI",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 12,
+    "name": "Colegio Guillermina Lestón de Guzmán",
+    "latitude": -26.8413028,
+    "longitude": -65.1994896,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8413028,-65.1994896&query_place_id=ChIJpQMTcwdcIpQRoMrLp7Za7Nw",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 13,
+    "name": "Colegio Sagrado Corazón de Jesús de las HHEE de Tucumán",
+    "latitude": -26.8366631,
+    "longitude": -65.2162415,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8366631,-65.2162415&query_place_id=ChIJVf176HJcIpQRdqA9-ZcvX1Q",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 14,
+    "name": "Colegio Giosué Carducci",
+    "latitude": -26.8349441,
+    "longitude": -65.2042754,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8349441,-65.2042754&query_place_id=ChIJhXUNnw9cIpQRJ_Y10Iw6p5k",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 15,
+    "name": "Santa Catalina",
+    "latitude": -26.8190774,
+    "longitude": -65.198431,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8190774,-65.198431&query_place_id=ChIJP--ZEyJcIpQRWigTtHtLFYA",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 16,
+    "name": "Colegio Suizo",
+    "latitude": -26.8291342,
+    "longitude": -65.198781,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8291342,-65.198781&query_place_id=ChIJmdNaDhtcIpQRn7DhWIKJ-Qc",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 17,
+    "name": "Colegio San Cayetano",
+    "latitude": -26.8459885,
+    "longitude": -65.1976857,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8459885,-65.1976857&query_place_id=ChIJaUExGflbIpQR4-hzb82dE7w",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 18,
+    "name": "Colegio Nueva Concepción",
+    "latitude": -26.8227878,
+    "longitude": -65.1958101,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8227878,-65.1958101&query_place_id=ChIJ0RJq2B5cIpQRe5vb6IgsEhM",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 19,
+    "name": "Colegio María Auxiliadora",
+    "latitude": -26.8263149,
+    "longitude": -65.217765,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/search/?api=1&query=-26.8263149,-65.217765&query_place_id=ChIJ4V_FVmpcIpQRI49G0T6I48w",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  },
+  {
+    "id": 20,
+    "name": "Colegio Salesiano General Belgrano",
+    "latitude": -26.8352791,
+    "longitude": -65.2090629,
+    "group": "Colegios",
+    "source": "Google Maps",
+    "source_url": "https://www.google.com/maps/place/Colegio+Salesiano+General+Belgrano/@-26.8352791,-65.2090629,17z/data=!3m1!4b1!4m6!3m5!1s0x94225db7e48aa49f:0x1992504b79c85e41!8m2!3d-26.8352791!4d-65.2090629!16s%2Fg%2F1v8l0q1y",
+    "observed_at": "2026-11-03",
+    "status": "pending_official_match"
+  }
+]

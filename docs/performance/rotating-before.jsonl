@@ -1,0 +1,11 @@
+{"clients":25,"route":"map","count":264,"errors":1,"p50":788,"p95":2488,"p99":4354,"ttfb95":2481}
+{"clients":25,"route":"search","count":265,"errors":0,"p50":2574,"p95":5004,"p99":9638,"ttfb95":5003}
+{"clients":25,"route":"buenosAires","count":265,"errors":0,"p50":2630,"p95":5075,"p99":9784,"ttfb95":5074}
+{"clients":25,"route":"search2","count":265,"errors":1,"p50":2541,"p95":4953,"p99":9587,"ttfb95":4953}
+{"clients":25,"route":"miss","count":265,"errors":1,"p50":2518,"p95":5075,"p99":12951,"ttfb95":5075}
+{"clients":25,"route":"card","count":265,"errors":3,"p50":2611,"p95":5849,"p99":8793,"ttfb95":5849}
+{"clients":25,"route":"page","count":265,"errors":2,"p50":2623,"p95":5483,"p99":9319,"ttfb95":5483}
+{"clients":25,"route":"tucuman","count":265,"errors":3,"p50":2647,"p95":5530,"p99":8447,"ttfb95":5530}
+{"clients":25,"route":"national","count":265,"errors":1,"p50":2649,"p95":5188,"p99":11368,"ttfb95":5187}
+{"clients":25,"route":"home","count":265,"errors":2,"p50":3499,"p95":6658,"p99":15645,"ttfb95":5616}
+{"clients":25,"rps":8.747086896299143}

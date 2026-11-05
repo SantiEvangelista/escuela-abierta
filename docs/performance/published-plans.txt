@@ -1,0 +1,112 @@
+                                                                       QUERY PLAN                                                                       
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.41..3.22 rows=5 width=764) (actual time=2.082..2.086 rows=5 loops=1)
+   Buffers: shared hit=8 read=2
+   ->  Index Scan using institution_read_pkey on institution_read  (cost=0.41..35753.11 rows=63822 width=764) (actual time=2.081..2.084 rows=5 loops=1)
+         Index Cond: (dataset_id = 1)
+         Buffers: shared hit=8 read=2
+ Planning:
+   Buffers: shared hit=140 read=4
+ Planning Time: 19.866 ms
+ Execution Time: 2.200 ms
+(9 rows)
+
+                                                                         QUERY PLAN                                                                         
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=173.56..182.67 rows=5 width=764) (actual time=1.563..1.566 rows=5 loops=1)
+   Buffers: shared hit=138 dirtied=3
+   ->  Index Scan using institution_province_page on institution_read  (cost=0.41..3556.19 rows=1951 width=764) (actual time=1.015..1.559 rows=100 loops=1)
+         Index Cond: ((dataset_id = 1) AND (province = '90'::text))
+         Buffers: shared hit=138 dirtied=3
+ Planning:
+   Buffers: shared hit=3
+ Planning Time: 0.091 ms
+ Execution Time: 1.648 ms
+(9 rows)
+
+                                                                  QUERY PLAN                                                                   
+-----------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=92.79..92.80 rows=5 width=764) (actual time=105.667..105.669 rows=5 loops=1)
+   Buffers: shared hit=205 read=5 dirtied=90
+   ->  Sort  (cost=92.79..92.81 rows=6 width=764) (actual time=105.665..105.666 rows=5 loops=1)
+         Sort Key: cueanexo
+         Sort Method: top-N heapsort  Memory: 30kB
+         Buffers: shared hit=205 read=5 dirtied=90
+         ->  Bitmap Heap Scan on institution_read  (cost=68.99..92.71 rows=6 width=764) (actual time=32.941..104.597 rows=115 loops=1)
+               Recheck Cond: (name ~~ '%LORENZO%'::text)
+               Filter: (dataset_id = 1)
+               Heap Blocks: exact=188
+               Buffers: shared hit=202 read=5 dirtied=90
+               ->  Bitmap Index Scan on institution_name_search  (cost=0.00..68.99 rows=6 width=0) (actual time=5.931..5.932 rows=203 loops=1)
+                     Index Cond: (name ~~ '%LORENZO%'::text)
+                     Buffers: shared hit=18 read=1
+ Planning:
+   Buffers: shared hit=15 read=2
+ Planning Time: 18.709 ms
+ Execution Time: 106.142 ms
+(18 rows)
+
+                                                             QUERY PLAN                                                             
+------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=18.76..36.43 rows=5 width=754) (actual time=0.084..0.085 rows=1 loops=1)
+   Buffers: shared hit=6
+   ->  Bitmap Heap Scan on institution_read  (cost=18.76..1145.82 rows=319 width=754) (actual time=0.083..0.083 rows=1 loops=1)
+         Recheck Cond: (members @> '{900058300}'::text[])
+         Filter: (dataset_id = 1)
+         Heap Blocks: exact=2
+         Buffers: shared hit=6
+         ->  Bitmap Index Scan on institution_member  (cost=0.00..18.68 rows=319 width=0) (actual time=0.075..0.076 rows=2 loops=1)
+               Index Cond: (members @> '{900058300}'::text[])
+               Buffers: shared hit=4
+ Planning:
+   Buffers: shared hit=14 read=1
+ Planning Time: 3.229 ms
+ Execution Time: 0.119 ms
+(14 rows)
+
+                                                             QUERY PLAN                                                             
+------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=2142.76..2142.77 rows=1 width=8) (actual time=1.214..1.215 rows=1 loops=1)
+   Buffers: shared hit=6 read=4
+   InitPlan 1
+     ->  Index Scan using schools_cue on schools s  (cost=0.41..8.43 rows=1 width=10) (actual time=0.956..0.957 rows=1 loops=1)
+           Index Cond: ((dataset_id = 1) AND (cue = '9000583'::text))
+           Buffers: shared read=4
+   ->  Bitmap Heap Scan on institution_read  (cost=20.44..2132.73 rows=638 width=0) (actual time=1.190..1.190 rows=1 loops=1)
+         Recheck Cond: (members && (InitPlan 1).col1)
+         Filter: (dataset_id = 1)
+         Heap Blocks: exact=2
+         Buffers: shared hit=6 read=4
+         ->  Bitmap Index Scan on institution_member  (cost=0.00..20.28 rows=638 width=0) (actual time=1.180..1.180 rows=2 loops=1)
+               Index Cond: (members && (InitPlan 1).col1)
+               Buffers: shared hit=4 read=4
+ Planning:
+   Buffers: shared hit=62 read=6
+ Planning Time: 2.919 ms
+ Execution Time: 5.139 ms
+(18 rows)
+
+                                                           QUERY PLAN                                                           
+--------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=15289.22..15289.23 rows=1 width=16) (actual time=2971.344..2971.359 rows=1 loops=1)
+   Buffers: shared hit=13256 read=922 dirtied=8002 written=438
+   InitPlan 1
+     ->  Seq Scan on location_import_batches  (cost=0.00..1.02 rows=1 width=8) (actual time=4.191..4.196 rows=1 loops=1)
+           Filter: (status = 'active'::text)
+           Rows Removed by Filter: 1
+           Buffers: shared read=1
+   ->  Seq Scan on institution_read  (cost=0.00..15095.33 rows=25715 width=23) (actual time=0.021..2952.560 rows=25409 loops=1)
+         Filter: ((name ~~ '%ESCUELA%'::text) AND (dataset_id = 1))
+         Rows Removed by Filter: 38413
+         Buffers: shared hit=13217 read=921 dirtied=8002 written=438
+ Planning:
+   Buffers: shared hit=40 read=3
+ Planning Time: 5.242 ms
+ Execution Time: 2971.475 ms
+(15 rows)
+
+ cards | members |  disk  
+-------+---------+--------
+ 63822 |   64495 | 143 MB
+(1 row)
+

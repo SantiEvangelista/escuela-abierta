@@ -1,0 +1,7 @@
+t
+SSR nacional + 25 lecturas nacionales + 25 provinciales simultáneas: 2 consultas SELECT card (esperadas: 2)
+{"mode":"cached","p50":1.9825419999999951,"p95":3.3995000000000033}
+{"mode":"preparedSQL","p50":27.17737500000004,"p95":66.34216699999999}
+{"cacheEntries":2,"heapUsed":34762680,"rss":121499648}
+{"cacheEntries":25,"heapUsed":40705280,"rss":133820416}
+t

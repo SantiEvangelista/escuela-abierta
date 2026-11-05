@@ -1,0 +1,20 @@
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+.env*
+!.env.example
+.vercel/
+.DS_Store
+data/raw/*
+!data/raw/.gitkeep
+backups/*
+!backups/.gitkeep
+
+padron/
+
+# Insumos y paquetes de publicación locales
+/docs/research/
+/data/approved/
+/dist/

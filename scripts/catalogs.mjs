@@ -1,0 +1,8 @@
+export const SECTORS = { Estatal: 'state', Privado: 'private', 'Social/cooperativa': 'social_cooperative' };
+export const AREAS = { Urbano: 'urban', Rural: 'rural', 'Sin información': 'unknown' };
+// Columnas de base cero. Las modalidades no se confunden con niveles.
+export const OFFERS = [
+[16,'common_nursery','common','Jardín maternal'],[17,'common_kindergarten','common','Jardín de infantes'],[18,'common_primary','common','Primario'],[19,'common_secondary','common','Secundario'],[20,'common_secondary_inet','common','Secundario INET'],[21,'common_higher','common','Superior no universitario'],[22,'common_higher_inet','common','Superior no universitario INET'],[23,'common_courses','common','Cursos superiores'],
+[24,'special_early','special','Educación temprana'],[25,'special_kindergarten','special','Jardín de infantes'],[26,'special_primary','special','Primario'],[27,'special_secondary','special','Secundario'],[28,'special_integration','special','Integración'],
+[29,'adult_primary','adult','Primario'],[30,'adult_secondary','adult','Secundario'],[31,'adult_training','adult','Formación profesional'],[32,'adult_training_inet','adult','Formación profesional INET'],[33,'adult_literacy','adult','Alfabetización'],[34,'hospital_initial','hospital','Inicial'],[35,'hospital_primary','hospital','Primario'],[36,'hospital_secondary','hospital','Secundario'],[37,'art_workshops','art','Talleres artísticos'],[38,'complementary','complementary','Servicios complementarios']];
+export const clean = value => value == null || String(value).trim() === '' ? null : String(value).normalize('NFC').trim().replace(/\s+/g,' ');

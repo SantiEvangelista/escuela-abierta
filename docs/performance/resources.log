@@ -1,0 +1,291 @@
+2026-11-05T13:49:38Z
+escuela-perf-before 0.00% 434.8MiB / 1.465GiB
+escuela-perf-db 3.28% 162.9MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:49:51Z
+escuela-perf-before 106.81% 439.3MiB / 1.465GiB
+escuela-perf-db 1.03% 163.8MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:50:05Z
+escuela-perf-before 110.08% 363.1MiB / 1.465GiB
+escuela-perf-db 106.48% 168.5MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:50:21Z
+escuela-perf-before 236.25% 366MiB / 1.465GiB
+escuela-perf-db 77.89% 164.2MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T13:50:42Z
+escuela-perf-before 0.27% 359.7MiB / 1.465GiB
+escuela-perf-db 0.06% 161.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:50:57Z
+escuela-perf-before 189.78% 373.1MiB / 1.465GiB
+escuela-perf-db 7.21% 161.5MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:51:14Z
+escuela-perf-before 131.14% 372.1MiB / 1.465GiB
+escuela-perf-db 0.16% 162MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T13:51:32Z
+escuela-perf-before 144.91% 374MiB / 1.465GiB
+escuela-perf-db 0.29% 161.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:51:54Z
+escuela-perf-before 203.84% 374MiB / 1.465GiB
+escuela-perf-db 54.50% 162MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:52:08Z
+escuela-perf-before 0.00% 364.2MiB / 1.465GiB
+escuela-perf-db 120.52% 175MiB / 768MiB
+active|executing|3
+active|MessageQueueSend|2
+2026-11-05T13:52:27Z
+escuela-perf-before 0.01% 370.6MiB / 1.465GiB
+escuela-perf-db 129.80% 165.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:52:52Z
+escuela-perf-before 163.32% 364.1MiB / 1.465GiB
+escuela-perf-db 117.76% 172.1MiB / 768MiB
+active|ClientWrite|1
+active|MessageQueueSend|2
+idle|ClientRead|2
+2026-11-05T13:53:09Z
+escuela-perf-before 126.96% 371.3MiB / 1.465GiB
+escuela-perf-db 0.03% 161.3MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T13:53:24Z
+escuela-perf-before 177.55% 376.3MiB / 1.465GiB
+escuela-perf-db 12.29% 162.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:53:39Z
+escuela-perf-before 121.98% 389.7MiB / 1.465GiB
+escuela-perf-db 0.00% 158.4MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:53:53Z
+escuela-perf-before 108.51% 391MiB / 1.465GiB
+escuela-perf-db 2.00% 159.9MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:54:06Z
+escuela-perf-before 102.45% 443.3MiB / 1.465GiB
+escuela-perf-db 45.17% 165MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T13:54:19Z
+escuela-perf-before 24.10% 403MiB / 1.465GiB
+escuela-perf-db 91.80% 185.2MiB / 768MiB
+active|BuffileRead|1
+active|MessageQueueSend|2
+idle|ClientRead|2
+2026-11-05T13:54:32Z
+escuela-perf-before 0.10% 434.4MiB / 1.465GiB
+escuela-perf-db 0.25% 153.8MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:54:49Z
+escuela-perf-before 116.26% 483.6MiB / 1.465GiB
+escuela-perf-db 0.87% 161.6MiB / 768MiB
+active|executing|3
+2026-11-05T13:55:04Z
+escuela-perf-before 122.29% 517MiB / 1.465GiB
+escuela-perf-db 0.00% 160.6MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:55:16Z
+escuela-perf-before 0.56% 455.9MiB / 1.465GiB
+escuela-perf-db 0.00% 160.6MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:55:28Z
+escuela-perf-before 0.00% 455.9MiB / 1.465GiB
+escuela-perf-db 0.00% 150.8MiB / 768MiB
+2026-11-05T13:55:40Z
+escuela-perf-before 0.00% 455.9MiB / 1.465GiB
+escuela-perf-db 0.06% 150.8MiB / 768MiB
+2026-11-05T13:55:53Z
+escuela-perf-before 0.00% 455.9MiB / 1.465GiB
+escuela-perf-db 0.00% 150.8MiB / 768MiB
+2026-11-05T13:56:05Z
+escuela-perf-before 0.00% 455.9MiB / 1.465GiB
+escuela-perf-db 11.59% 153MiB / 768MiB
+active|BuffileWrite|1
+active|executing|2
+2026-11-05T13:56:20Z
+escuela-perf-before 0.00% 455.9MiB / 1.465GiB
+escuela-perf-db 80.96% 170MiB / 768MiB
+active|executing|1
+2026-11-05T13:56:32Z
+escuela-perf-before 0.00% 455.9MiB / 1.465GiB
+escuela-perf-db 47.65% 168.7MiB / 768MiB
+active|DataFileRead|1
+2026-11-05T13:56:45Z
+escuela-perf-after 169.38% 47.63MiB / 1.465GiB
+escuela-perf-before 0.00% 455.9MiB / 1.465GiB
+escuela-perf-db 17.49% 169.2MiB / 768MiB
+active|executing|1
+2026-11-05T13:57:05Z
+escuela-perf-after 2.40% 56.41MiB / 1.465GiB
+escuela-perf-before 114.53% 455.9MiB / 1.465GiB
+escuela-perf-db 112.80% 182.2MiB / 768MiB
+active|VacuumDelay|1
+idle|ClientRead|1
+2026-11-05T13:57:20Z
+escuela-perf-after 76.82% 126MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 43.92% 174MiB / 768MiB
+idle|ClientRead|1
+2026-11-05T13:57:33Z
+escuela-perf-after 100.47% 142.8MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 74.00% 182.7MiB / 768MiB
+idle|ClientRead|2
+idle|executing|1
+2026-11-05T13:57:46Z
+escuela-perf-after 0.00% 157.1MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 20.96% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:57:59Z
+escuela-perf-after 101.63% 162.1MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 89.35% 182.7MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T13:58:12Z
+escuela-perf-after 96.39% 186.4MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 93.30% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:58:24Z
+escuela-perf-after 98.24% 185.7MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 93.26% 182.7MiB / 768MiB
+active|executing|2
+idle|ClientRead|1
+2026-11-05T13:58:36Z
+escuela-perf-after 98.02% 186.8MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 74.29% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:58:48Z
+escuela-perf-after 90.18% 188.5MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 56.54% 182.9MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:59:01Z
+escuela-perf-after 99.09% 191.1MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 92.45% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:59:13Z
+escuela-perf-after 97.43% 190.1MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 83.45% 182.7MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T13:59:26Z
+escuela-perf-after 99.22% 191MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 95.34% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T13:59:38Z
+escuela-perf-after 101.64% 193.4MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 82.49% 182.7MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T13:59:51Z
+escuela-perf-after 97.64% 194.2MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 100.66% 182.7MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T14:00:03Z
+escuela-perf-after 98.93% 191.5MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 97.61% 182.7MiB / 768MiB
+active|executing|2
+idle|ClientRead|1
+2026-11-05T14:00:16Z
+escuela-perf-after 106.13% 192.7MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 90.68% 182.7MiB / 768MiB
+active|executing|2
+idle|ClientRead|1
+2026-11-05T14:00:27Z
+escuela-perf-after 97.41% 190.8MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 100.65% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T14:00:40Z
+escuela-perf-after 96.85% 194.3MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 91.52% 182.7MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T14:00:52Z
+escuela-perf-after 108.92% 191.3MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 80.94% 182.7MiB / 768MiB
+active|executing|2
+idle|executing|1
+2026-11-05T14:01:05Z
+escuela-perf-after 101.73% 194.3MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 103.84% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T14:01:17Z
+escuela-perf-after 98.44% 194.3MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 84.51% 182.7MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T14:01:30Z
+escuela-perf-after 104.94% 188.6MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 91.05% 182.7MiB / 768MiB
+active|executing|2
+idle|executing|1
+2026-11-05T14:01:42Z
+escuela-perf-after 102.02% 189.3MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 95.99% 183.3MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T14:01:55Z
+escuela-perf-after 91.11% 192.2MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 79.90% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T14:02:08Z
+escuela-perf-after 97.88% 193.4MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 97.06% 182.7MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T14:02:19Z
+escuela-perf-after 100.81% 195.6MiB / 1.465GiB
+escuela-perf-before 1.62% 256.5MiB / 1.465GiB
+escuela-perf-db 64.65% 182.7MiB / 768MiB
+idle|ClientRead|3
+2026-11-05T14:02:32Z
+escuela-perf-after 103.49% 194MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 89.69% 182.7MiB / 768MiB
+active|executing|1
+idle|ClientRead|2
+2026-11-05T14:02:43Z
+escuela-perf-after 101.03% 192.3MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 87.63% 182.7MiB / 768MiB
+active|executing|2
+idle|ClientRead|1
+2026-11-05T14:02:57Z
+escuela-perf-after 100.08% 192.4MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 93.33% 182.8MiB / 768MiB
+active|executing|2
+idle|ClientRead|1
+2026-11-05T14:03:09Z
+escuela-perf-after 65.25% 196.6MiB / 1.465GiB
+escuela-perf-before 0.00% 256.5MiB / 1.465GiB
+escuela-perf-db 57.58% 182.8MiB / 768MiB
+idle|ClientRead|3
